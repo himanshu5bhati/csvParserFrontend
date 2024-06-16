@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">CSV</a>
+    <div class="" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="#">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<h6 *ngIf="uploadMessage" class="alert alert-success my-3 mx-5">{{uploadMessage}}</h6>
+<h6 *ngIf="downloadMessage" class="alert alert-success my-3 mx-5">{{downloadMessage}}</h6>
+<h6 *ngIf="shareMessage" class="alert alert-success my-3 mx-5">{{shareMessage}}</h6>
+<div class="container mt-5" style="box-shadow: 0px 0px 3px 0px #ccc;">
+    <div class="d-flex align-items-center justify-content-between py-3">
+    <h1>CSV</h1>
+    <tr class="float-end">
+        <td><input #fileInput type="file" name="" id="" (change)="onFileSelected($event)"></td>
+        <td><button type="button" class="btn btn-primary" (click)="uploadFile()">Upload</button></td>
+    </tr>
+    </div>
+    <table class="table table-stripped p-3">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Download</th>
+            <th scope="col">Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of fileList">
+            <td>{{item.filename}}</td>
+            <td><i class="bi bi-download" (click)="downloadFile(item._id)"></i></td>
+            <td><i class="bi bi-copy" (click)="shareLink(item._id)"></i></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
